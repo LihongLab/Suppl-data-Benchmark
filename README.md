@@ -55,15 +55,15 @@ The nine metrics are adapted from Chen _et al._[^10] and the implement is availa
 
 |Metrics                                            |Range  |Based  on |Formula                                                      |
 | -------------------------------------------------- | ------ | --------- | ------------------------------------------------------------ |
-|Root-mean-square error (RMSE)                                             |R+     |Value     |$RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2}{n}}$ |
-|L-RMSE,  R-RMSE,  LR-RMSE                            |R+     |Value     |$$ L-RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2 \cdot \mathbf{1} \{y_i \leq \iota \}}{\sum_{i} \mathbf{1} \{ y_i \leq \iota \} }}$$ <br> $$R-RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2 \cdot \mathbf{1} \{y_i \geq \gamma \}}<br/>{\sum_{i} \mathbf{1} \{ y_i \geq \gamma \} }}$$ <br>$$LR-RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2 \cdot \mathbf{1} \{(y_i \leq \iota) or (y_i \geq \gamma) \}}{\sum_{i} \mathbf{1} \{ (y_i \leq \iota) or (y_i \geq \gamma) \} }}$$ <br> $$ \left\{ \begin{array}{rl} \iota & = median(\boldsymbol{y}) - 1.65 \times \sigma \\ \gamma & = median(\boldsymbol{y}) + 1.65 \times \sigma \\ \sigma & = 1.4826 \times median_{1 \leq i \leq n}(|y_i - median(\boldsymbol{y})|) \end{array}\right. $$ |
+|Root-mean-square error (RMSE)                                             |R+     |Value     |$$RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2}{n}}$$ |
+|L-RMSE,  R-RMSE,  LR-RMSE                            |R+     |Value     |$$ L-RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2 \cdot \mathbf{1} \{y_i \leq \iota \}}{\sum_{i} \mathbf{1} \{ y_i \leq \iota \} }}$$ <br> $$R-RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2 \cdot \mathbf{1} \{y_i \geq \gamma \}}<br/>{\sum_{i} \mathbf{1} \{ y_i \geq \gamma \} }}$$ <br>$$LR-RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2 \cdot \mathbf{1} \{(y_i \leq \iota) or (y_i \geq \gamma) \}}{\sum_{i} \mathbf{1} \{ (y_i \leq \iota) or (y_i \geq \gamma) \} }}$$ <br> <img src=".\response_suppl\formula1.png" alt="formula1" style="zoom:50%;" /> |
 |Pearson Correlation Coefficient (PCC)              |[-1,1] |Value     |$$PCC(\boldsymbol{y,\hat{y}})=\frac{\sum_i(\hat{y}_i - \mu(\boldsymbol{\hat{y}}))(y_i - \mu(\boldsymbol{y}))}{\sqrt{\sum_i(\hat{y}_i - \mu(\boldsymbol{\hat{y}}))^2}\sqrt{\sum_i(y_i - \mu(\boldsymbol{y}))^2}}$$ |
-|Spearman Correlation Coefficient (SCC)             |[-1,1] |Rank      |$SCC(\boldsymbol{y,\hat{y}})=PCC(\boldsymbol{r(y),r(\hat{y})})$ |
+|Spearman Correlation Coefficient (SCC)             |[-1,1] |Rank      |$$SCC(\boldsymbol{y,\hat{y}})=PCC(\boldsymbol{r(y),r(\hat{y})})$$ |
 |Normalized Discounted Cumulative Gain (NDCG)       |[0,1]  |Rank      |$$DCG(\boldsymbol{y,\hat{y}}) = \sum_{i=1}^{n}\frac{2^{-y_i}}{\log_2 (r(-\hat{y}_i)+1 )}$$ <br> $$NDCG(\boldsymbol{y,\hat{y}}) = \frac{DCG(\boldsymbol{y,\hat{y}})}{DCG(\boldsymbol{y,y})}$$                                |
-|Probabilistic C-index (PC), Normalized  Weighted Probabilistic C-index (NWPC) |[0,1]  |Rank      |$$PC(\boldsymbol{y,r(\hat{y})}) = \frac{2}{n(n-1)} \sum_{i<j}hp(y_i,y_j,r(\hat{y}_i),r(\hat{y}_j),\sigma(\boldsymbol{y}))$$ <br> $$hp(y_i,y_j,r(\hat{y}_i),r(\hat{y}_j),\sigma(\boldsymbol{y})) = \left\{ \begin{array}{ll} \frac{1}{2}(1 + erf(\frac{y_i - y_j}{2\sigma(\boldsymbol{y})})), & r(\hat{y}_i)<r(\hat{y}_j), \\ 0.5, & r(\hat{y}_i)=r(\hat{y}_j), \\ \frac{1}{2}(1 + erf(\frac{y_j - y_i}{2\sigma(\boldsymbol{y})})), & r(\hat{y}_i)>r(\hat{y}_j) \end{array} \right.$$ <br> $$erf(a) = \frac{2}{\sqrt{\pi}}\int_0^a e^{-t^2} dt$$ <br> $$WPC(M) = \frac{\sum_{d} w_d \cdot pc_d}{\sum_{d} w_d}$$ <br> $$NWPC = \frac{WPC - WPC_{min}}{WPC_{max} - WPC_{min}}$$ |
+|Probabilistic C-index (PC), Normalized  Weighted Probabilistic C-index (NWPC) |[0,1]  |Rank      |$$PC(\boldsymbol{y,r(\hat{y})}) = \frac{2}{n(n-1)} \sum_{i<j}hp(y_i,y_j,r(\hat{y}_i),r(\hat{y}_j),\sigma(\boldsymbol{y}))$$ <br>  <img src=".\response_suppl\formula2.png" alt="formula2" style="zoom:40%;" /><br> $$erf(a) = \frac{2}{\sqrt{\pi}}\int_0^a e^{-t^2} dt$$ <br> $$WPC(M) = \frac{\sum_{d} w_d \cdot pc_d}{\sum_{d} w_d}$$ <br> $$NWPC = \frac{WPC - WPC_{min}}{WPC_{max} - WPC_{min}}$$ |
 |ROC-AUC                                            |[0,1]  |Value     |ROC-AUC  provides an aggregate measure of performance across all possible  classification thresholds |
 
-$$\bold{y}$$: the observed response values; $$\bold{\hat{y}}$$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $$\bold{\hat{y}}$$ in ascending order.
+**$y$**: the observed response values; $\hat{y}$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $\hat{y}$ in ascending order.
 
 ## Pipeline
 
@@ -121,26 +121,7 @@ Input:
 * $t$, the number of repeats (default: 5);
 * $k$, the number of folds for cross-validation (default: 5);
 * $p$, the number of hyperparameters combination (default: 30);
-* a MDL model.
-
-**for** $i$ = 1 to $t$ **do**
-	stratify D on the tissue origin into k folds, $D = (D_1,...,D_k)$
-	**for** $j$ = 1 to $k$ **do**
-		take the $D_j$ as test set
-		take the $D_{(j+1) \% k}$ as validation set
-		take the remaining folds as training set
-		apply max-min transformation of IC50s on training, validation and test set
-		**for** $n$ = 1 to $p$ **do**
-			select a random combination from hyperparameter grid
-			use training set to derive a model, $M_n$
-			use validation set to evaluate $M_n$
-			retain the evaluation score, Pearson correlation coefficient
-		**done**
-		select the combination of hyperparameter with the highest evaluation score
-		use training and validation set to fit the model
-		return the predicted results on test set
-	**done**
-**done**    
+* a MDL model. 
 
 ```bash
 for i = 1 to t do
@@ -173,30 +154,6 @@ Input:
 * $d$, the number of drugs in the dataset;
 * $p$, the number of hyperparameters combination (default: 30);
 * a SDL model.
-
-**for** $i$ = 1 to $t$ **do**
-	stratify D on the tissue origin into k folds, $D = (D_1,...,D_k)$
-	**for** $j$ = 1 to $k$ **do**
-		take the $D_j$ as test set
-		take the $D_{(j+1) \% k}$ as validation set
-		take the remaining folds as training set
-		apply max-min transformation of IC50s on training, validation and test set
-		**for** $m$ = 1 to $d$ **do**
-			sample test set with drug m to obtain drug specific test set
-			sample validation set with drug m to obtain drug specific validation set
-			sample training set with drug m to obtain drug specific training set
-			**for** $n$ = 1 to $p$ **do**
-                select a random combination from hyperparameter grid
-                use training set to derive a model, $M_n$
-                use validation set to evaluate $M_n$
-                retain the evaluation score, Pearson correlation coefficient
-            **done**
-            select the combination of hyperparameter with the highest evaluation score
-            use training and validation set to fit the model
-            return the predicted results on drug specific test set
-         **done**
-	**done**
-**done**
 
 ```bash
 for i = 1 to t do
@@ -371,16 +328,13 @@ use D, h to fit the model M
 return the predicted results on patient data
 ```
 
-use $D$, $h$ to fit the model $M$
-return the predicted results on patient data
-
 #### Single Drug Learning (SDL)
 
 Input:
 
 * $D$, a set of labeled tuples;
 
-* $\bold{h}$, sets of hyperparameters with the highest evaluation score for each drug
+* $h$, sets of hyperparameters with the highest evaluation score for each drug
 
 * $d$, the number of drugs in the dataset;
 
@@ -393,16 +347,6 @@ for m = 1 to d do
 	return the predicted results on patient data
 done
 ```
-
-**for** $m$ = 1 to $d$ **do**
-
-​	sample $D$ to obtain drug specific dataset, $D_m$
-
-​	use $D_m$, $h_m$ to fit the model $M_m$
-
-​	return the predicted results on patient data
-
-**done**
 
 
 #### 3. Model Assessment
@@ -422,13 +366,12 @@ singledrug_performance = {
 ```
 
 
----
 
 Reference:
 
 [^1]:Kuenzi, B. M., Park, J., Fong, S. H., Sanchez, K. S., Lee, J., Kreisberg, J. F., Ma, J., & Ideker, T. (2020). Predicting Drug Response and Synergy Using a Deep Learning Model of Human Cancer Cells. Cancer Cell, 38(5), 672-684.e676. https://doi.org/10.1016/j.ccell.2020.09.014
 
-[^2]:Kuenzi, B. M., Park, J., Fong, S. H., Sanchez, K. S., Lee, J., Kreisberg, J. F., Ma, J., & Ideker, T. (2020). Predicting Drug Response and Synergy Using a Deep Learning Model of Human Cancer Cells. Cancer Cell, 38(5), 672-684.e676. https://doi.org/10.1016/j.ccell.2020.09.014
+[^2]:Manica, M., Oskooei, A., Born, J., Subramanian, V., Saez-Rodriguez, J., & Rodriguez Martinez, M. (2019). Toward Explainable Anticancer Compound Sensitivity Prediction via Multimodal Attention-Based Convolutional Encoders. Mol Pharm, 16(12), 4797-4806. https://doi.org/10.1021/acs.molpharmaceut.9b00520
 
 [^3]:Zhu, Y., Ouyang, Z., Chen, W., Feng, R., Chen, D. Z., Cao, J., & Wu, J. (2021). TGSA: Protein-Protein Association-Based Twin Graph Neural Networks for Drug Response Prediction with Similarity Augmentation. Bioinformatics. https://doi.org/10.1093/bioinformatics/btab650
 
