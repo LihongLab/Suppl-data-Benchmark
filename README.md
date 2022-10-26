@@ -4,17 +4,18 @@
 
 The environment, 
 
-|              | Paradigm | **Tumor feature** | **Drug feature** | File | Repository |
-| ------------ | --------------------- | ---------------- | ------------- | ------------- | ------------- |
-| **DrugCell**[^1] | MDL                  | M                     | Morgan FP        |  | https://github.com/idekerlab/DrugCell |
-| **PaccMann**[^2] | MDL | E[^a]    | SMILES           |  | https://github.com/PaccMann/paccmann_predictor |
-| **TGSA**[^3] | MDL | E[^a], M, C | Molecular graph  |  | https://github.com/violet-sto/TGSA |
-| **CRDNN**[^4] | SDL  | E[^a]    | -                |  | https://github.com/TeoSakel/deep-drug-response |
-| **VAEN**[^5] | SDL          | E[^b]            | -                |  | https://github.com/bsml320/VAEN |
-| **MOLI**[^6] | SDL       | E[^a], M, C         | -                |  | https://github.com/hosseinshn/MOLI |
+|              | Paradigm | **Tumor feature** | **Drug feature** | Repository |
+| ------------ | --------------------- | ---------------- | ------------- | ------------- |
+| **DrugCell**[^1] | MDL                  | M                     | Morgan FP        | https://github.com/idekerlab/DrugCell |
+| **PaccMann**[^2] | MDL | E<sup>a</sup> | SMILES           | https://github.com/PaccMann/paccmann_predictor |
+| **TGSA**[^3] | MDL | E<sup>a</sup>, M, C | Molecular graph  | https://github.com/violet-sto/TGSA |
+| **CRDNN**[^4] | SDL  | E<sup>a</sup> | -                | https://github.com/TeoSakel/deep-drug-response |
+| **VAEN**[^5] | SDL          | E<sup>b</sup> | -                | https://github.com/bsml320/VAEN |
+| **MOLI**[^6] | SDL       | E<sup>a</sup>, M, C | -                | https://github.com/hosseinshn/MOLI |
 
-[^a]: z-score standardization
-[^b]: rank normalization
+a: z-score standardization
+
+b: rank normalization
 
 Multi Drug Learning: MDL; Single Drug Learning: SDL; E: expression profiles; M: mutation status; C: Copy number variation; FP: Fingerprint;SMILES: Simplified Molecular-Input Line-Entry System
 
@@ -62,7 +63,7 @@ The nine metrics are adapted from Chen _et al._[^10] and the implement is availa
 |Probabilistic C-index (PC), Normalized  Weighted Probabilistic C-index (NWPC) |[0,1]  |Rank      |$$PC(\boldsymbol{y,r(\hat{y})}) = \frac{2}{n(n-1)} \sum_{i<j}hp(y_i,y_j,r(\hat{y}_i),r(\hat{y}_j),\sigma(\boldsymbol{y}))$$ <br> $$hp(y_i,y_j,r(\hat{y}_i),r(\hat{y}_j),\sigma(\boldsymbol{y})) = \left\{ \begin{array}{ll} \frac{1}{2}(1 + erf(\frac{y_i - y_j}{2\sigma(\boldsymbol{y})})), & r(\hat{y}_i)<r(\hat{y}_j), \\ 0.5, & r(\hat{y}_i)=r(\hat{y}_j), \\ \frac{1}{2}(1 + erf(\frac{y_j - y_i}{2\sigma(\boldsymbol{y})})), & r(\hat{y}_i)>r(\hat{y}_j) \end{array} \right.$$ <br> $$erf(a) = \frac{2}{\sqrt{\pi}}\int_0^a e^{-t^2} dt$$ <br> $$WPC(M) = \frac{\sum_{d} w_d \cdot pc_d}{\sum_{d} w_d}$$ <br> $$NWPC = \frac{WPC - WPC_{min}}{WPC_{max} - WPC_{min}}$$ |
 |ROC-AUC                                            |[0,1]  |Value     |ROC-AUC  provides an aggregate measure of performance across all possible  classification thresholds |
 
-$\bold{y}$: the observed response values; $\bold{\hat{y}}$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $\bold{\hat{y}}$ in ascending order.
+$$\bold{y}$$: the observed response values; $$\bold{\hat{y}}$$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $$\bold{\hat{y}}$$ in ascending order.
 
 ## Pipeline
 
