@@ -1,15 +1,9 @@
-Table R1. Comparison of DL models and traditional ML models
+Table R1. Xia et al.’s comparison of several prediction methods using multiple pharmacogenomics sources with R-squared (coefficient of determination) and the rank in brackets (Xia et al., Brief Bioinform, 2021).
 
-|          | PCC             | SCC             | RMSE            |
-| -------- | --------------- | --------------- | --------------- |
-| TGSA     | 0.9152+/-0.0016 | 0.8947+/-0.0019 | 1.0769+/-0.0088 |
-| TGSAEXP  | 0.9117+/-0.0018 | 0.8917+/-0.0018 | 1.0965+/-0.0097 |
-| TGSACNV  | 0.9088+/-0.0020 | 0.8879+/-0.0021 | 1.1144+/-0.0104 |
-| TGSAMUT  | 0.9044+/-0.0019 | 0.8830+/-0.0021 | 1.1387+/-0.0099 |
-| DrugCell | 0.8905+/-0.0022 | 0.8672+/-0.0025 | 1.2108+/-0.0099 |
-| PaccMann | 0.7478+/-0.0047 | 0.6983+/-0.0050 | 1.7675+/-0.0123 |
-| CRDNN    | 0.8793+/-0.0024 | 0.8498+/-0.0030 | 1.2746+/-0.0117 |
-| VAEN     | 0.8878+/-0.0023 | 0.8608+/-0.0030 | 1.2252+/-0.0077 |
-| SVM      | 0.8734+/-0.0069 | 0.8504+/-0.0075 | 1.3030+/-0.0301 |
-| Bayes    | 0.8470+/-0.0091 | 0.8145+/-0.0095 | 1.4474+/-0.0321 |
-| Enet     | 0.8734+/-0.0064 | 0.8499+/-0.0059 | 1.3040+/-0.0362 |
+| R-squared (rank) | NCI60    | CTRP     | GDSC     | CCLE     | gCSI     |
+| ---------------- | -------- | -------- | -------- | -------- | -------- |
+| UnoMT            | 0.81 (1) | 0.68 (1) | 0.53 (1) | 0.68 (1) | 0.80 (1) |
+| LightGBM         | 0.74 (2) | 0.67 (2) | 0.55 (2) | 0.60 (2) | 0.50 (2) |
+| Random forest    | 0.45 (3) | 0.30 (3) | 0.13 (3) | 0.17 (3) | 0.25 (3) |
+
+Xia et al. (2021). A cross-study analysis of drug response prediction in cancer cell lines. Brief Bioinform. doi:10.1093/bib/bbab356.

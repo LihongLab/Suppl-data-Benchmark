@@ -555,7 +555,7 @@ def roc_auc(df):
 
 
 # Clinical results analysis
-def wilcox_pval(df, method):
+def wilcox_pval(df, method='predict'):
 #     methods = ['CRDNN', 'DrugCell', 'PaccMann', 'TGSA', 'VAEN']
 #     pval_list = []
 #     for method in methods:
@@ -570,11 +570,18 @@ def wilcox_pval(df, method):
     return pd.Series([pval], index = [method])
 
 
-def effect_size(df, method):
+def effect_size(df, method='predict'):
     x1 = df[df['response_RS'] == 'Non-response'][method].values
     x2 = df[df['response_RS'] == 'Response'][method].values
     mean_diff = np.mean(x1) - np.mean(x2)
     return pd.Series([mean_diff], index = [method])
+    
+def roc_auc_cli(df, method='predict'):
+    """ROC-AUC
+    """
+    x1 = np.asanyarray(df['response_01'], dtype='f8')
+    x2 = np.asanyarray(df[method], dtype='f8')
+    return pd.Series([roc_auc_score(x1,x2)], index = [method])
 
 '''
 drug_character['kurtosis'] = gdscv1_dr.groupby('DRUG_NAME')['LN_IC50'].apply(stats.kurtosis)
