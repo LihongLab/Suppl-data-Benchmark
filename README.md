@@ -13,10 +13,10 @@ The environments and hyperparameter grids used in this study are available on `\
 | **VAEN**[^5] | SDL          | E<sup>b</sup> | -                | https://github.com/bsml320/VAEN |
 | **MOLI**[^6] | SDL       | E<sup>a</sup>, M, C | -                | https://github.com/hosseinshn/MOLI |
 
-*__MDL__: Multi Drug Learning; __SDL__: Single Drug Learning*
-*__E__: expression profiles; __M__: mutation status; __C__: Copy number variation; __FP__: Fingerprint; __SMILES__: Simplified Molecular-Input Line-Entry System*
-*__a__: z-score standardization*
-*__b__: rank normalization*
+*__MDL__: Multi Drug Learning; __SDL__: Single Drug Learning*  
+*__E__: expression profiles; __M__: mutation status; __C__: Copy number variation; __FP__: Fingerprint; __SMILES__: Simplified Molecular-Input Line-Entry System*  
+*__a__: z-score standardization*  
+*__b__: rank normalization*  
 
 # Dataset
 
@@ -62,7 +62,7 @@ The nine metrics are adapted from Chen _et al._[^10] and the implement is availa
 |Probabilistic C-index (PC), Normalized  Weighted Probabilistic C-index (NWPC) |[0,1]  |Rank      |$$PC(\boldsymbol{y,r(\hat{y})})=\frac{2}{n(n-1)}\sum_{i<j}hp(y_i,y_j,r(\hat{y}_i),r(\hat{y}_j),\sigma(\boldsymbol{y}))$$ <br><img src=".\response_suppl\formula2.png" alt="formula2" style="zoom:40%;"/><br>$$erf(a) = \frac{2}{\sqrt{\pi}}\int_0^a e^{-t^2} dt$$<br>$$WPC(M)=\frac{\sum_{d}w_d \cdot pc_d}{\sum_{d} w_d}$$ <br> $$NWPC = \frac{WPC - WPC_{min}}{WPC_{max} - WPC_{min}}$$ |
 |ROC-AUC                                            |[0,1]  |Value     |ROC-AUC  provides an aggregate measure of performance across all possible  classification thresholds |
 
-*$y$: the observed response values; $\hat{y}$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $\hat{y}$ in ascending order.*
+$y$: the observed response values; $\hat{y}$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $\hat{y}$ in ascending order.
 
 # Pipeline
 
