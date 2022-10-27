@@ -1,5 +1,32 @@
 A systematic assessment of deep learning methods for drug response prediction: from in-vitro to clinical application
 
+```
+│  README.md
+│
+├─dependencies # Environment required
+│      crdnn_env.yml
+│      drugcell_env.yml
+│      moli_env.yml
+│      paccmann_env.yml
+│      tgsa_env.yml
+│      vaen_env.yml
+│      vaen_r_env.yml
+│
+├─hyper_grid # Hyperparameters search grid
+│      hypergrid_crdnn.json
+│      hypergrid_drugcell.json
+│      hypergrid_moli.json
+│      hypergrid_paccamnn.json
+│      hypergrid_tgsa.json
+│      hypergrid_vaen.json
+│
+└─utils # Utility scripts
+        benchmark_metrics.py # Implement of benchmark metrics
+        GDSCrel82_BinaryIC50.R # Script for binarization of IC50s
+        generate_NWPC_weights.py # Generate NWPC weights
+        smiles2graph.py # Generate molecular graphs from SMILES strings 
+```
+
 # Methods for assessments 
 
 The environments and hyperparameter grids used in this study are available on `\dependencies` and `\hyper_grid`.
@@ -55,11 +82,11 @@ The nine metrics are adapted from Chen _et al._[^10] and the implement is availa
 |Metrics                                            |Range  |Based  on |Formula                                                      |
 | -------------------------------------------------- | ------ | --------- | ------------------------------------------------------------ |
 |Root-mean-square error (RMSE)                                             |R+     |Value     |$$RMSE(\boldsymbol{y,\hat{y}}) = \sqrt{\frac{\sum_{i}(y_i-\hat{y}_i)^2}{n}}$$ |
-|L-RMSE,  R-RMSE,  LR-RMSE                            |R+     |Value     | <img src=".\response_suppl\l_rmse.png" alt="formula1" style="zoom:40%;" /><br><img src=".\response_suppl\r_rmse.png" alt="formula1" style="zoom:40%;" /><br><img src=".\response_suppl\lr_rmse.png" alt="formula1" style="zoom:40%;" /> <br> <img src=".\response_suppl\formula1.png" alt="formula1" style="zoom:40%;" /> |
+|L-RMSE,  R-RMSE,  LR-RMSE                            |R+     |Value     | <img src=".\src\l_rmse.png" alt="l_rmse" style="zoom:40%;" /><br><img src=".\src\r_rmse.png" alt="r_rmse" style="zoom:40%;" /><br><img src=".\src\lr_rmse.png" alt="lr_rmse" style="zoom:40%;" /> <br> <img src=".\src\formula1.png" alt="formula1" style="zoom:40%;" /> |
 |Pearson Correlation Coefficient (PCC)              |[-1,1] |Value     |$$PCC(\boldsymbol{y,\hat{y}})=\frac{\sum_i(\hat{y}_i - \mu(\boldsymbol{\hat{y}}))(y_i - \mu(\boldsymbol{y}))}{\sqrt{\sum_i(\hat{y}_i - \mu(\boldsymbol{\hat{y}}))^2}\sqrt{\sum_i(y_i - \mu(\boldsymbol{y}))^2}}$$ |
 |Spearman Correlation Coefficient (SCC)             |[-1,1] |Rank      |$$SCC(\boldsymbol{y,\hat{y}})=PCC(\boldsymbol{r(y),r(\hat{y})})$$ |
 |Normalized Discounted Cumulative Gain (NDCG)       |[0,1]  |Rank      |$$DCG(\boldsymbol{y,\hat{y}}) = \sum_{i=1}^{n}\frac{2^{-y_i}}{\log_2 (r(\hat{y}_i)+1 )}$$ <br> $$NDCG(\boldsymbol{y,\hat{y}}) = \frac{DCG(\boldsymbol{y,\hat{y}})}{DCG(\boldsymbol{y,y})}$$                                |
-|Probabilistic C-index (PC), Normalized  Weighted Probabilistic C-index (NWPC) |[0,1]  |Rank      |<img src=".\response_suppl\pc.png" alt="formula1" style="zoom:40%;" /> <br> <img src=".\response_suppl\formula2.png" alt="formula2" style="zoom:40%;"/> <br> $$erf(a) = \frac{2}{\sqrt{\pi}}\int_0^a e^{-t^2} dt$$ <br> <img src=".\response_suppl\wpc.png" alt="formula1" style="zoom:40%;" /> <br> $$NWPC = \frac{WPC - WPC_{min}}{WPC_{max} - WPC_{min}}$$ |
+|Probabilistic C-index (PC), Normalized  Weighted Probabilistic C-index (NWPC) |[0,1]  |Rank      |<img src=".\src\pc.png" alt="pc" style="zoom:40%;" /> <br> <img src=".\src\formula2.png" alt="formula2" style="zoom:40%;"/> <br> $$erf(a) = \frac{2}{\sqrt{\pi}}\int_0^a e^{-t^2} dt$$ <br> <img src=".\src\wpc.png" alt="wpc" style="zoom:40%;" /> <br> $$NWPC = \frac{WPC - WPC_{min}}{WPC_{max} - WPC_{min}}$$ |
 |ROC-AUC                                            |[0,1]  |Value     |ROC-AUC  provides an aggregate measure of performance across all possible  classification thresholds |
 
 $y$: the observed response values; $\hat{y}$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $\hat{y}$ in ascending order.
@@ -112,7 +139,7 @@ $y$: the observed response values; $\hat{y}$: the predicted response values; $n$
 
   * The script for binarization of IC50s: `utils\GDSCrel82_BinaryIC50.R`.
 
-#### 2. Model Construction
+### 2. Model Construction
 
 #### Multi Drug Learning (MDL)
 
@@ -145,7 +172,7 @@ for i = 1 to t do
 done    
 ```
 
-### Single Drug Learning (SDL)
+#### Single Drug Learning (SDL)
 
 Input:
 
@@ -316,7 +343,7 @@ singledrug_performance = {
 * Drug Response: TCGA_DR.txt
 
 ### 2. Model Construction
-### Multi Drug Learning (MDL)
+#### Multi Drug Learning (MDL)
 
 Input:
 
@@ -331,7 +358,7 @@ use D, h to fit the model M
 return the predicted results on patient data
 ```
 
-### Single Drug Learning (SDL)
+#### Single Drug Learning (SDL)
 
 Input:
 
