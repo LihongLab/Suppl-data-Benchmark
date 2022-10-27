@@ -1,8 +1,8 @@
-# A systematic assessment of deep learning methods for drug response prediction: from in-vitro to clinical application
+A systematic assessment of deep learning methods for drug response prediction: from in-vitro to clinical application
 
-## Methods for assessments 
+# Methods for assessments 
 
-The environments, hyperparameter grids used in this study are available on `\instruction`.
+The environments and hyperparameter grids used in this study are available on `\dependencies` and `\hyper_grid`.
 
 |              | Paradigm | **Tumor feature** | **Drug feature** | Repository |
 | ------------ | --------------------- | ---------------- | ------------- | ------------- |
@@ -13,13 +13,12 @@ The environments, hyperparameter grids used in this study are available on `\ins
 | **VAEN**[^5] | SDL          | E<sup>b</sup> | -                | https://github.com/bsml320/VAEN |
 | **MOLI**[^6] | SDL       | E<sup>a</sup>, M, C | -                | https://github.com/hosseinshn/MOLI |
 
-a: z-score standardization
+*__MDL__: Multi Drug Learning; __SDL__: Single Drug Learning*
+*__E__: expression profiles; __M__: mutation status; __C__: Copy number variation; __FP__: Fingerprint; __SMILES__: Simplified Molecular-Input Line-Entry System*
+*__a__: z-score standardization*
+*__b__: rank normalization*
 
-b: rank normalization
-
-Multi Drug Learning: MDL; Single Drug Learning: SDL; E: expression profiles; M: mutation status; C: Copy number variation; FP: Fingerprint;SMILES: Simplified Molecular-Input Line-Entry System
-
-## Dataset
+# Dataset
 
 * GDSC
 
@@ -49,7 +48,7 @@ Multi Drug Learning: MDL; Single Drug Learning: SDL; E: expression profiles; M: 
 
 The curated datasets are available on https://zenodo.org/record/7060305#.YxnOEHZByUn
 
-## Benchmark Metrics
+# Benchmark Metrics
 
 The nine metrics are adapted from Chen _et al._[^10] and the implement is available on `utils\benchmark_metrics.py`
 
@@ -63,12 +62,12 @@ The nine metrics are adapted from Chen _et al._[^10] and the implement is availa
 |Probabilistic C-index (PC), Normalized  Weighted Probabilistic C-index (NWPC) |[0,1]  |Rank      |$$PC(\boldsymbol{y,r(\hat{y})})=\frac{2}{n(n-1)}\sum_{i<j}hp(y_i,y_j,r(\hat{y}_i),r(\hat{y}_j),\sigma(\boldsymbol{y}))$$ <br><img src=".\response_suppl\formula2.png" alt="formula2" style="zoom:40%;"/><br>$$erf(a) = \frac{2}{\sqrt{\pi}}\int_0^a e^{-t^2} dt$$<br>$$WPC(M)=\frac{\sum_{d}w_d \cdot pc_d}{\sum_{d} w_d}$$ <br> $$NWPC = \frac{WPC - WPC_{min}}{WPC_{max} - WPC_{min}}$$ |
 |ROC-AUC                                            |[0,1]  |Value     |ROC-AUC  provides an aggregate measure of performance across all possible  classification thresholds |
 
-**$y$**: the observed response values; $\hat{y}$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $\hat{y}$ in ascending order.
+*$y$: the observed response values; $\hat{y}$: the predicted response values; $n$: the number of samples; $r(\hat{y}_i)$ is the position of $\hat{y}_i$ on the sorted $\hat{y}$ in ascending order.*
 
-## Pipeline
+# Pipeline
 
-### Assessment on cell line data
-#### 1. Data Preparation
+## Assessment on cell line data
+### 1. Data Preparation
 
 * Transcriptome profiles: GDSC_EXP.csv
 
@@ -111,6 +110,8 @@ The nine metrics are adapted from Chen _et al._[^10] and the implement is availa
 
 * Drug Response: GDSC_DR.txt
 
+  * The script for binarization of IC50s: `utils\GDSCrel82_BinaryIC50.R`.
+
 #### 2. Model Construction
 
 #### Multi Drug Learning (MDL)
@@ -144,7 +145,7 @@ for i = 1 to t do
 done    
 ```
 
-#### Single Drug Learning (SDL)
+### Single Drug Learning (SDL)
 
 Input:
 
@@ -181,7 +182,7 @@ for i = 1 to t do
 done
 ```
 
-#### 3. Model Assessment
+### 3. Model Assessment
 
 * Concatenate each fold to generate the list for assessment in the format of  `['drug','true', 'predict','binary_response','repeat_fold','cell_line','repeat']`
 
@@ -225,11 +226,11 @@ singledrug_performance = {
 
 ```
 
-### Assessment on clinical data
+## Assessment on clinical data
 
-#### 1. Data Preparation
+### 1. Data Preparation
 
-##### 1.1 Cell line data
+#### 1.1 Cell line data
 
 * Transcriptome profiles: GDSC_EXP.csv
 
@@ -272,7 +273,9 @@ singledrug_performance = {
 
 * Drug Response: GDSC_DR.txt
 
-##### 1.2 Patient data
+  * The script for binarization of IC50s: `utils\GDSCrel82_BinaryIC50.R`.
+
+#### 1.2 Patient data
 
 * Transcriptome profiles: TCGA_EXP.csv
 
@@ -312,8 +315,8 @@ singledrug_performance = {
     ```
 * Drug Response: TCGA_DR.txt
 
-#### 2. Model Construction
-#### Multi Drug Learning (MDL)
+### 2. Model Construction
+### Multi Drug Learning (MDL)
 
 Input:
 
@@ -328,7 +331,7 @@ use D, h to fit the model M
 return the predicted results on patient data
 ```
 
-#### Single Drug Learning (SDL)
+### Single Drug Learning (SDL)
 
 Input:
 
@@ -349,7 +352,7 @@ done
 ```
 
 
-#### 3. Model Assessment
+### 3. Model Assessment
 
 * Concatenate the result of each drug to generate the list for assessment in the format of `['drug', 'response_RS', 'response_01', 'predict']`
 
