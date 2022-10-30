@@ -302,7 +302,7 @@ singledrug_performance = {
 
   * For PaccMann, TGSA, CRDNN and MOLI, gene expression matrix was z-score standardization.
   * For VAEN, gene expression matrix was rank normalization.
-  * ComBat [^10] was used to adjust expression profiles of patients with the GDSC cell line dataset as reference batch.
+  * ComBat [^10] was used to adjust expression profiles of patients with the GDSC cell line dataset.
 * Mutation profiles: TCGA_MUT.csv
 * Copy number profiles: TCGA_CNV.csv
 * Chemical representations:
