@@ -66,18 +66,12 @@ The environments and hyperparameter grids used in this study are available on `\
   * Patients with relapsed myeloma enrolled in phase 2 and phase 3 clinical trials of bortezomib.[^8]  
   * Gene expression data were downloaded from GEO:GSE9782.
 
-* Cisplatin
-
-  * Women with stage II or III breast cancers lacking estrogen and progesterone receptors and HER2/Neu (TNBC) were enrolled and treated with cisplatin. [^9]
-  
-  * Gene expression data were downloaded from GEO:GSE18864
-  
 
 The curated datasets are available on https://zenodo.org/record/7060305#.YxnOEHZByUn
 
 # Benchmark Metrics
 
-The nine metrics are adapted from Chen _et al._[^10] and the implement is available on `utils\benchmark_metrics.py`
+The nine metrics are adapted from Chen _et al._[^9] and the implement is available on `utils\benchmark_metrics.py`
 
 |Metrics                                            |Range  |Based  on |Formula                                                      |
 | -------------------------------------------------- | ------ | --------- | ------------------------------------------------------------ |
@@ -308,7 +302,7 @@ singledrug_performance = {
 
   * For PaccMann, TGSA, CRDNN and MOLI, gene expression matrix was z-score standardization.
   * For VAEN, gene expression matrix was rank normalization.
-  * ComBat [^11] was used to adjust expression profiles of patients with the GDSC cell line dataset as reference batch.
+  * ComBat [^10] was used to adjust expression profiles of patients with the GDSC cell line dataset as reference batch.
 * Mutation profiles: TCGA_MUT.csv
 * Copy number profiles: TCGA_CNV.csv
 * Chemical representations:
@@ -413,7 +407,6 @@ Reference:
 
 [^7]: Ding, Z., Zu, S., & Gu, J. (2016). Evaluating the molecule-based prediction of clinical drug responses in cancer. Bioinformatics, 32(19), 2891-2895. https://doi.org/10.1093/bioinformatics/btw344
 [^8]:Mulligan, G., Mitsiades, C., Bryant, B., Zhan, F., Chng, W. J., Roels, S., Koenig, E., Fergus, A., Huang, Y., Richardson, P., Trepicchio, W. L., Broyl, A., Sonneveld, P., Shaughnessy, J. D., Jr., Bergsagel, P. L., Schenkein, D., Esseltine, D. L., Boral, A., & Anderson, K. C. (2007). Gene expression profiling and correlation with outcome in clinical trials of the proteasome inhibitor bortezomib. Blood, 109(8), 3177-3188. https://doi.org/10.1182/blood-2006-09-044974
-[^9]: Silver, D. P., Richardson, A. L., Eklund, A. C., Wang, Z. C., Szallasi, Z., Li, Q., Juul, N., Leong, C. O., Calogrias, D., Buraimoh, A., Fatima, A., Gelman, R. S., Ryan, P. D., Tung, N. M., De Nicolo, A., Ganesan, S., Miron, A., Colin, C., Sgroi, D. C., Ellisen, L. W., Winer, E. P., & Garber, J. E. (2010). Efficacy of neoadjuvant Cisplatin in triple-negative breast cancer. J Clin Oncol, 28(7), 1145-1153. https://doi.org/10.1200/JCO.2009.22.4725
+[^9]: Chen, J., & Zhang, L. (2020). A survey and systematic assessment of computational methods for drug response prediction. Brief Bioinform. https://doi.org/10.1093/bib/bbz164
+[^10]: Johnson, W. E., Li, C., & Rabinovic, A. (2007). Adjusting batch effects in microarray expression data using empirical Bayes methods. Biostatistics, 8(1), 118-127. 
 
-[^10]: Chen, J., & Zhang, L. (2020). A survey and systematic assessment of computational methods for drug response prediction. Brief Bioinform. https://doi.org/10.1093/bib/bbz164
-[^11]: Johnson, W. E., Li, C., & Rabinovic, A. (2007). Adjusting batch effects in microarray expression data using empirical Bayes methods. Biostatistics, 8(1), 118-127. 
