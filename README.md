@@ -410,3 +410,6 @@ Reference:
 [^9]: Chen, J., & Zhang, L. (2020). A survey and systematic assessment of computational methods for drug response prediction. Brief Bioinform. https://doi.org/10.1093/bib/bbz164
 [^10]: Johnson, W. E., Li, C., & Rabinovic, A. (2007). Adjusting batch effects in microarray expression data using empirical Bayes methods. Biostatistics, 8(1), 118-127. 
 
+-------------------------------------------------------------------------------------------------------------------------
+**Citation**: Please cite our paper if you find this benchmarking work is helpful to your research. **Bihan Shen\#, Fangyoumin Feng\#, Kunshi Li, Ping Lin, Liangxiao Ma, Hong Li\*.** [**A systematic assessment of deep learning methods for drug response prediction: from in vitro to clinical applications**. *Briefings in Bioinformatics* 24, 2 (2023).](https://doi.org/10.1093/bib/bbac605)
+
